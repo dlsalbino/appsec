@@ -14,7 +14,7 @@ public class HeroService {
 
     private final HeroRepository heroRepository;
 
-    public Set<Hero> findAll(){
+    public Set<Hero> findAll() {
         return heroRepository.findAll().stream().map(heroEntity -> {
             return Hero.builder()
                     .id(heroEntity.getId())

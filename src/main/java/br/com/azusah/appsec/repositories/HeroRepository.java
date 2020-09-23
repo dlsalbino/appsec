@@ -2,7 +2,6 @@ package br.com.azusah.appsec.repositories;
 
 import br.com.azusah.appsec.repositories.entities.HeroEntity;
 import lombok.Data;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -45,7 +44,7 @@ public class HeroRepository {
                 .orElse(null);
     }
 
-    public HeroEntity findByName(String name){
+    public HeroEntity findByName(String name) {
         return heroes.stream()
                 .filter(heroEntity -> heroEntity.getName().equals(name))
                 .findAny()
