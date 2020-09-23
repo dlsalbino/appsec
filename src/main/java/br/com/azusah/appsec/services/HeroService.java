@@ -3,7 +3,6 @@ package br.com.azusah.appsec.services;
 import br.com.azusah.appsec.mappers.HeroMapper;
 import br.com.azusah.appsec.models.Hero;
 import br.com.azusah.appsec.repositories.HeroRepository;
-import br.com.azusah.appsec.repositories.entities.HeroEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class HeroService {
         }).collect(Collectors.toSet());
     }
 
-    public Hero findOne(Long id) {
+    public Hero findById(Long id) {
         return Optional.ofNullable(heroRepository.findById(id))
                 .map(heroMapper::entityToModel)
                 .orElse(Hero.builder().build());

@@ -25,7 +25,7 @@ public class HeroController {
     }
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<Hero> listOne(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.ok(heroService.findOne(id));
+    ResponseEntity<Hero> findById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.ok(heroService.findById(id));
     }
 }
