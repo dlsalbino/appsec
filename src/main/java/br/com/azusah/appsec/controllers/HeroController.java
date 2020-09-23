@@ -5,6 +5,7 @@ import br.com.azusah.appsec.services.HeroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class HeroController {
     ResponseEntity<Set<Hero>> listHeroes() {
         Set<Hero> heroes = heroService.findAll();
         return ResponseEntity.ok(heroes);
+    }
+
+    @GetMapping(value = "/{id}")
+    ResponseEntity<Hero> listOne(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.ok(heroService.findOne(id));
     }
 }
