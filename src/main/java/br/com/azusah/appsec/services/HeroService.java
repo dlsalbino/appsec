@@ -29,8 +29,8 @@ public class HeroService {
     }
 
     public Hero findOne(Long id) {
-        Optional<HeroEntity> optHeroEntity = Optional.ofNullable(heroRepository.findById(id));
-        return optHeroEntity.map(heroMapper::entityToModel).orElseThrow();
-
+        return Optional.ofNullable(heroRepository.findById(id))
+                .map(heroMapper::entityToModel)
+                .orElse(Hero.builder().build());
     }
 }
