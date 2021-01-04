@@ -51,9 +51,16 @@ public class HeroRepository {
                 .orElse(null);
     }
 
-    public static Set<HeroEntity> findByCompany(String company) {
+    public Set<HeroEntity> findByCompany(String company) {
         return heroes.stream()
                 .filter(heroEntity -> heroEntity.getCompany().equals(company))
                 .collect(Collectors.toSet());
+    }
+
+    public HeroEntity insert(HeroEntity heroEntity) {
+        long lastId = heroes.stream().count();
+        heroEntity.setId(++lastId);
+        heroes.add(heroEntity);
+        return findById(lastId);
     }
 }
