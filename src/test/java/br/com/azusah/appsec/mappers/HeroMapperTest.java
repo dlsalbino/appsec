@@ -21,6 +21,12 @@ class HeroMapperTest {
     void entityToModel() {
 
         //given
+        Hero heroExpected = Hero.builder()
+                .id(1L)
+                .name("HeroName")
+                .company("HeroCompany")
+                .build();
+
         HeroEntity entity = HeroEntity.builder()
                 .id(1L)
                 .name("HeroName")
@@ -33,11 +39,34 @@ class HeroMapperTest {
         //then
         assertThat(heroActual)
                 .isNotNull()
-                .isExactlyInstanceOf(Hero.class);
+                .isExactlyInstanceOf(Hero.class)
+                .isEqualToComparingFieldByField(heroExpected);
     }
 
     @Test
     void modelToEntity() {
+
+        //given
+        HeroEntity heroExpected = HeroEntity.builder()
+                .name("HeroName")
+                .company("HeroCompany")
+                .build();
+
+        Hero model = Hero.builder()
+                .id(1L)
+                .name("HeroName")
+                .company("HeroCompany")
+                .build();
+
+        //when
+        HeroEntity heroActual = heroMapper.modelToEntity(model);
+
+        //then
+        assertThat(heroActual)
+                .isNotNull()
+                .isExactlyInstanceOf(HeroEntity.class)
+                .isEqualToComparingFieldByField(heroExpected);
+
     }
 
 }
