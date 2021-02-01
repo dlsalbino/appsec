@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/heroes")
@@ -20,9 +21,10 @@ public class HeroController {
     private final HeroHttpMapper heroHttpMapper;
 
     @GetMapping
-    ResponseEntity<Set<Hero>> listHeroes() {
+    ResponseEntity<Set<HeroResponse>> listHeroes() {
         Set<Hero> heroes = heroService.findAll();
-        return ResponseEntity.ok(heroes);
+        Set<HeroResponse> heroResponses = heroes.stream().map(hero -> heroHttpMapper.convert(hero)).collect(Collectors.toSet());
+        return ResponseEntity.ok(heroResponses);
     }
 
     @GetMapping(value = "/{id}")

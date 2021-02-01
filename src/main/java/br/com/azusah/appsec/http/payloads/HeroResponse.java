@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class HeroResponse {
+
     private Long id;
     private String name;
     private String company;
