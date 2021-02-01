@@ -23,13 +23,14 @@ public class HeroController {
     @GetMapping
     ResponseEntity<Set<HeroResponse>> listHeroes() {
         Set<Hero> heroes = heroService.findAll();
-        Set<HeroResponse> heroResponses = heroes.stream().map(hero -> heroHttpMapper.convert(hero)).collect(Collectors.toSet());
+        Set<HeroResponse> heroResponses = heroes.stream().map(heroHttpMapper::convert).collect(Collectors.toSet());
         return ResponseEntity.ok(heroResponses);
     }
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<Hero> findById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.ok(heroService.findById(id));
+    ResponseEntity<HeroResponse> findById(@PathVariable(value = "id") Long id) {
+        HeroResponse heroResponse = heroHttpMapper.convert(heroService.findById(id));
+        return ResponseEntity.ok(heroResponse);
     }
 
     @PostMapping
