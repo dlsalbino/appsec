@@ -17,7 +17,7 @@ class HeroMapperTest {
     private HeroMapper heroMapper;
 
     @Test
-    @DisplayName("should convert an entity in a model")
+    @DisplayName("should convert an entity into a model")
     void entityToModel() {
 
         //given
@@ -44,6 +44,7 @@ class HeroMapperTest {
     }
 
     @Test
+    @DisplayName("should convert a model into a entity")
     void modelToEntity() {
 
         //given

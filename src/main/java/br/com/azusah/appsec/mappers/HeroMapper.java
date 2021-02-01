@@ -15,7 +15,7 @@ public class HeroMapper {
                 .build();
     }
 
-    public HeroEntity modelToEntity(Hero hero){
+    public HeroEntity modelToEntity(Hero hero) {
         return HeroEntity.builder()
                 .name(hero.getName())
                 .company(hero.getCompany())

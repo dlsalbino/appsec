@@ -2,7 +2,7 @@ package br.com.azusah.appsec.services;
 
 import br.com.azusah.appsec.mappers.HeroMapper;
 import br.com.azusah.appsec.models.Hero;
-import br.com.azusah.appsec.repositories.HeroRepository;
+import br.com.azusah.appsec.repositories.HeroH2Repository;
 import br.com.azusah.appsec.repositories.entities.HeroEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,15 +25,15 @@ class HeroServiceTest {
     private HeroMapper heroMapper;
 
     @Mock
-    private HeroRepository repository;
+    private HeroH2Repository repository;
 
     @Test
-    @DisplayName("")
+    @DisplayName("should return a list of heroes")
     void findAll() {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("should return a hero")
     void findById() {
     }
 
@@ -59,7 +59,7 @@ class HeroServiceTest {
                 .company("HeroCompany")
                 .build();
 
-        when(repository.insert(any(HeroEntity.class))).thenReturn(heroEntity);
+        when(repository.save(any(HeroEntity.class))).thenReturn(heroEntity);
         when(heroMapper.modelToEntity(any(Hero.class))).thenReturn(heroEntity);
         when(heroMapper.entityToModel(any(HeroEntity.class))).thenReturn(heroExpected);
 

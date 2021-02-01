@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class HeroHttpMapper {
 
-    public Hero convert(HeroRequest request){
+    public Hero convert(HeroRequest request) {
         return Hero.builder()
                 .name(request.getName())
                 .company(request.getCompany())
                 .build();
     }
 
-    public HeroResponse convert(Hero hero){
+    public HeroResponse convert(Hero hero) {
         return HeroResponse.builder()
                 .id(hero.getId())
                 .name(hero.getName())
