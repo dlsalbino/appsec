@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Data
+@Deprecated
 public class HeroRepository {
 
     private static HeroEntity hero;
