@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import javax.validation.Valid;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,9 +22,12 @@ public class HeroController {
     private final HeroHttpMapper heroHttpMapper;
 
     @GetMapping
-    ResponseEntity<Set<HeroResponse>> listHeroes() {
+    ResponseEntity<Collection<HeroResponse>> listHeroes() {
         Set<Hero> heroes = heroService.findAll();
-        Set<HeroResponse> heroResponses = heroes.stream().map(heroHttpMapper::convert).collect(Collectors.toSet());
+        Collection<HeroResponse> heroResponses = heroes.stream()
+                .sorted(Comparator.comparing(Hero::getId))
+                .map(heroHttpMapper::convert)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(heroResponses);
     }
 
@@ -34,7 +38,7 @@ public class HeroController {
     }
 
     @PostMapping
-    ResponseEntity<HeroResponse> create(@RequestBody HeroRequest heroRequest) {
+    ResponseEntity<HeroResponse> create(@Valid @RequestBody HeroRequest heroRequest) {
         Hero hero = heroService.insert(heroHttpMapper.convert(heroRequest));
         return ResponseEntity.ok(heroHttpMapper.convert(hero));
     }

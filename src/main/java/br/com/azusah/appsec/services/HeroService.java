@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,6 +27,7 @@ public class HeroService {
         all.forEach(heroEntity -> entityList.add(heroEntity));
 
         return entityList.stream()
+                .sorted(Comparator.comparing(HeroEntity::getName))
                 .map(heroEntity -> heroMapper.entityToModel(heroEntity))
                 .collect(Collectors.toSet());
     }

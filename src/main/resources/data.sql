@@ -6,7 +6,9 @@ CREATE TABLE heroes (
   company VARCHAR(250) NOT NULL
 );
 
-INSERT INTO heroes (name, company) VALUES
+INSERT INTO
+    heroes (name, company)
+VALUES
   ('Wolverine', 'Marvel'),
   ('Rogue', 'Marvel'),
   ('Dark Phoenix', 'Marvel'),

@@ -9,9 +9,9 @@
         <relativePath/>
     </parent>
     <groupId>br.com.azusah</groupId>
-    <artifactId>appsec</artifactId>
+    <artifactId>heroes</artifactId>
     <version>0.0.2-SNAPSHOT</version>
-    <name>appsec</name>
+    <name>heroes</name>
     <description>Application to taste Spring Security</description>
 
     <properties>
@@ -28,6 +28,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>
